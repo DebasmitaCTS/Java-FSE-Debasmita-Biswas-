@@ -1,0 +1,271 @@
+<!-- <p>add-new-vehicle works!</p> -->
+<div [hidden]="submitted">
+    <!-- <form (ngSubmit)="onSubmit()"> -->
+        <!-- <form [hidden]="submitted" [formGroup]="Vehiclesvalid" novalidate (ngSubmit)="onSubmit()"> -->
+            <div class="container">
+                <div class="row justify-content-center mt-5">
+                <div class="col-lg-8">
+                <div class="card">
+                <div class="card-header">
+
+                        <h4>ADD VEHICLE</h4>
+                </div>
+                <div class="card-body">
+            <form [formGroup]="formData" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)">
+                
+                
+                    <div class="mb-3">
+                
+                
+                    <b><label for="registrationNo" class="form-label">Registration Number: </label></b>
+                    <input type="text" name="registrationNo" class="form-control" formControlName="registrationNo">
+                   <span *ngIf="formData.controls.registrationNo.invalid && formData.controls.registrationNo.touched">
+                      <p style="color: red;"> Enter Valid Registration Number</p>
+                  </span>
+                  
+                  
+                  <!-- <span *ngIf="formData.controls.registrationNo.errors?.required && formData.controls.registrationNo.touched">
+                    <p style="color: red;">  Registration Number is required</p>
+                </span> -->
+                
+                
+                </div>
+                <div class="mb-3">
+                
+                
+                    <b><label for="belongsToUserId" class="form-label">Belongs To User Id:</label></b>
+                    <input type="number" class="form-control" name="belongsToUserId" min =1 formControlName="belongsToUserId">
+                    <span *ngIf="formData.controls.belongsToUserId.invalid && formData.controls.belongsToUserId.touched">
+                        <p style="color: red;">User Id is required or invalid</p>
+                  </span>
+                
+                </div>
+                <div class="mb-3">
+                
+                    <b><label for="vehicleTypeId" class="form-label">Vehicle Type:</label></b>
+
+                    <!-- <td><input type="number" name="vehicleTypeId" formControlName="vehicleTypeId"></td> -->
+                    
+                        <select name="vehicleTypeId" class="form-control" id="vehicleTypeId" formControlName="vehicleTypeId">
+    
+                        <!-- <option>Select</option> -->
+                        <option value="">ID || Type || Max Passengers || Fare Per Km</option>
+
+                        <option *ngFor="let vehicles of addNewVehicle" value={{vehicles.id}}>{{vehicles.id}} {{vehicles.type}} {{vehicles.maxPassengersAllowed}} {{vehicles.farePerKM}}</option>
+                    </select>
+                    
+                    <span *ngIf="formData.controls.vehicleTypeId.invalid && formData.controls.vehicleTypeId.touched">
+                        <p style="color: red;">Vehicle Type is required</p>
+                  </span>
+                
+                </div>
+                <div class="mb-3">
+                
+                    <b><label for="rtoname" class="form-label">RTO Name:</label></b>
+                    <input type="text" name="rtoname" class="form-control" formControlName="rtoname">
+                    <span *ngIf="formData.controls.rtoname.invalid && formData.controls.rtoname.touched">
+                        <p style="color: red;">RTO Name is required</p>
+                  </span>
+                
+                </div>
+                <div class="mb-3">
+                
+                    <b><label for="-registrationDate" class="form-label">Registration Date:</label></b>
+                    <input type="Date" class="form-control" name="registrationDate" formControlName="registrationDate" [max]="maxDate()" >
+                    <span *ngIf="formData.controls.registrationDate.invalid && formData.controls.registrationDate.touched">
+                        <p style="color: red;">Registration Date is required</p>
+                  </span>
+                
+                </div>
+                <div class="mb-3">
+                
+                    <b><label for="rcdocurl" class="form-label">RC Document URL:</label></b>
+                    <input type="text" class="form-control" name="rcdocurl" formControlName="rcdocurl">
+                    <span *ngIf="formData.controls.rcdocurl.invalid && formData.controls.rcdocurl.touched">
+                        <p style="color: red;">RC DOCURL is required</p>
+                  </span>
+                
+                </div>
+                <div class="mb-3">
+                
+                    <b><label for="insuranceCompanyName">Insurance Company Name:</label></b>
+                    <div class="mb-2"></div>
+                    <input type="text" class="form-control" name="insuranceCompanyName" formControlName="insuranceCompanyName">
+                    <span *ngIf="formData.controls.insuranceCompanyName.invalid && formData.controls.insuranceCompanyName.touched">
+                        <p style="color: red;">Insurance Company Name is required</p>
+                  </span>
+                
+                </div>
+                <div class="mb-3">
+                
+                    <b><label for="insuraceNo" class="form-label">Insurance Number:</label></b>
+                    <input type="number" class="form-control" name="insuraceNo" formControlName="insuraceNo">
+                    <span *ngIf="formData.controls.insuraceNo.invalid && formData.controls.insuraceNo.touched">
+                        <p style="color: red;">Insurance Number is required</p>
+                  </span>
+                
+                </div>
+                <div class="mb-3">
+                
+                    <b><label for="insurancedOn" class="form-label">Insuranced On:</label></b>
+                    <input type="Date" class="form-control" name="insurancedOn" formControlName="insurancedOn" [max]="maxDate()">
+                    <span *ngIf="formData.controls.insurancedOn.invalid && formData.controls.insurancedOn.touched">
+                        <p style="color: red;">Insuranced On is required</p>
+                  </span>
+                
+                </div>
+                <div class="mb-3">
+                
+                    <b><label for="insuranceCertificateDOCURL" class="form-label">Insurance Certificate Document URL:</label></b>
+                    <input type="text" class="form-control" name="insuranceCertificateDOCURL" formControlName="insuranceCertificateDOCURL">
+                    <span *ngIf="formData.controls.insuranceCertificateDOCURL.invalid && formData.controls.insuranceCertificateDOCURL.touched">
+                        <p style="color: red;">Insurance Certificate DOCURL is required</p>
+                  </span>
+                
+                </div>
+                <div class="mb-3">
+            
+                    <b><label for="puccertificateno" class="form-label">PUC Certificate Number:</label></b>
+                    <input type="number" class="form-control" name="puccertificateno" formControlName="puccertificateno">
+                    <span *ngIf="formData.controls.puccertificateno.invalid && formData.controls.puccertificateno.touched">
+                        <p style="color: red;">PUC Certificate No is required</p>
+                  </span>
+            
+                </div>
+                <div class="mb-3">
+                
+                    <b><label for="pucissuedon">PUC Issued On:</label></b>
+                    <div class="mb-2"></div>
+                    <input type="Date" class="form-control" name="pucissuedon" formControlName="pucissuedon" [max]="maxDate()">
+                    <span *ngIf="formData.controls.pucissuedon.invalid && formData.controls.pucissuedon.touched">
+                        <p style="color: red;">PUC Issued On is required</p>
+                  </span>
+                
+                </div>
+                <div class="mb-3">
+                
+                    <b><label for="pucdocurl" class="form-label">PUC Document URL:</label></b>
+                    <input type="text" class="form-control" name="pucdocurl" formControlName="pucdocurl">
+                    <span *ngIf="formData.controls.pucdocurl.invalid && formData.controls.pucdocurl.touched">
+                        <p style="color: red;">PUC DOCURL is required</p>
+                  </span>
+                
+                </div>
+                 <div [hidden]="submitted">
+                <p style="color: red;">
+                    {{errorMessage}}
+                </p></div>
+                
+                    <td><input type="Submit" class="submit" value="Register" [disabled]="!formData.valid"></td>
+                    <td><input type="Reset" value="Cancel"></td>
+                    
+                
+
+            
+            <!-- <div>
+            <label for=" registrationNo">Registration No:</label>
+            <input type="text" name="registrationNo" id=" registrationNo" formControlName="registrationNo" [(ngModel)]="addNewVehicleTest.registrationNo" required>
+            <div *ngIf="registrationNo && registrationNo.invalid && registrationNo.touched" style="color: red;">RegistrationNo is required</div>
+        </div>
+        
+        <div>
+            <label for="belongsToUserId">Belongs ToUserId:</label>
+            <input type="number"  id="belongsToUserId" formControlName="belongsToUserId"[(ngModel)]="addNewVehicleTest.belongsToUserId"    name="belongsToUserId" required>
+            <div *ngIf="belongsToUserId && belongsToUserId.invalid && belongsToUserId.touched" style="color: red;">userId is required</div>
+        </div>
+
+        <div>
+          <label for="vehicleTypeId">Vehicle TypeId:</label>
+          <input type="number"  id="vehicleTypeId" formControlName="vehicleTypeId"[(ngModel)]="addNewVehicleTest.vehicleTypeId"   name="vehicleTypeId" required>
+          <div *ngIf="vehicleTypeId && vehicleTypeId.invalid && vehicleTypeId.touched" style="color: red;">vehicleTypeId is required</div>
+        </div> -->
+
+        <!-- <div>
+            <label for="rtoname">RTO Name:</label>
+            <input type="text" form-controlName="rtoname" id="rtoname"  [(ngModel)]="addNewVehicleTest.rtoname"   name="rtoname" required>
+            <div *ngIf="rtoname && rtoname.invalid && rtoname.touched" style="color: red;">rtoname is required</div>
+        </div>
+
+        <div>
+            <label for="registrationDate">Registration Date:</label>
+            <input type="date" form-controlName="registrationDate" id="registrationDate" [(ngModel)]="addNewVehicleTest.registrationDate"  name="registrationDate" required>
+            <div *ngIf="registrationDate && registrationDate.invalid && registrationDate.touched" style="color: red;">RegistrationDate is required</div>
+        </div> -->
+
+        <!-- <div>
+            <label for="registrationExpiresOn">Registration ExpiresOn:</label>
+            <input type="date" class="form-control" id="registrationExpiresOn" [(ngModel)]="addNewVehicleTest.registrationExpiresOn"   name="registrationExpiresOn">
+        </div> -->
+
+        <!-- <div>
+            <label for="rcdocurl">RCDOCURL:</label>
+            <input type="text" form-controlName="rcdocurl" id="rcdocurl"  [(ngModel)]="addNewVehicleTest.rcdocurl" name="rcdocurl" required>
+            <div *ngIf="rcdocurl && rcdocurl.invalid && rcdocurl.touched" style="color: red;">rcdocurl is required</div>
+        </div> -->
+
+        <!-- <div>
+            <label for="insuranceCompanyName">Insurance Company Name:</label>
+            <input type="text" form-controlName="insuranceCompanyName" id="insuranceCompanyName" [(ngModel)]="addNewVehicleTest.insuranceCompanyName" name="insuranceCompanyName" required>
+            <div *ngIf="insuranceCompanyName && insuranceCompanyName.invalid && insuranceCompanyName.touched" style="color: red;">insuranceCompanyName is required</div>
+        </div> -->
+
+        <!-- <div>
+            <label for="insuraceNo">Insurance No:</label>
+            <input type="number" form-controlName="insuraceNo" id="insuranceNo" [(ngModel)]="addNewVehicleTest.insuraceNo" name="insuranceNo" required>
+            <div *ngIf="insuraceNo && insuraceNo.invalid && insuraceNo.touched" style="color: red;">insuraceNo is required</div>
+        </div> -->
+
+        <!-- <div>
+            <label for="insurancedOn">Insuranced On :</label>
+            <input type="date" form-controlName="insurancedOn" id="insurancedOn" [(ngModel)]="addNewVehicleTest.insurancedOn" name="insurancedOn" required>
+            <div *ngIf="insurancedOn && insurancedOn.invalid && insurancedOn.touched" style="color: red;">insurancedOn is required</div>
+        </div> -->
+
+        <!-- <div>
+            <label for="insuranceExpiresOn">Insuranced Expires On :</label>
+            <input type="date" class="form-control" id="insurancedExpiresOn" [(ngModel)]="addNewVehicleTest.insuranceExpiresOn" name="insurancedExpiresOn">
+        </div> -->
+
+        <!-- <div>
+            <label for="insuranceCertificateDOCURL">Insurance Certificate DOCURL :</label>
+            <input type="text" form-controlName="insuranceCertificateDOCURL" id="insuranceCertificateDOCURL" [(ngModel)]="addNewVehicleTest.insuranceCertificateDOCURL" name="insuranceCertificateDOCURL" required> 
+            <div *ngIf="insuranceCertificateDOCURL && insuranceCertificateDOCURL.invalid && insuranceCertificateDOCURL.touched" style="color: red;">insuranceCertificateDOCURL is required</div>
+        </div> -->
+
+        <!-- <div>
+            <label for="puccertificateno">PUCcertificate No :</label>
+            <input type="number" form-controlName="puccertificateno" id="puccertificateno"  [(ngModel)]="addNewVehicleTest.puccertificateno" name="puccertificateno" required>
+            <div *ngIf="puccertificateno && puccertificateno.invalid && puccertificateno.touched" style="color: red;">puccertificateno is required</div>
+        </div> -->
+<!-- 
+        <div>
+            <label for="pucissuedon">PUCissued On :</label>
+            <input type="date" form-controlName="pucissuedon" id="pucissuedon"  [(ngModel)]="addNewVehicleTest.pucissuedon"  name="pucissuedon" required>
+            <div *ngIf="pucissuedon && pucissuedon.invalid && pucissuedon.touched" style="color: red;">pucissuedon is required</div>
+        </div> -->
+
+        <!-- <div>
+            <label for="pucvaliduntil">PUCvaliduntil :</label>
+            <input type="date" class="form-control" id="pucvaliduntil"  [(ngModel)]="addNewVehicleTest.pucvaliduntil"  name="pucvaliduntil">
+        </div> -->
+
+        <!-- <div>
+            <label for="pucdocurl">PUCDOCURL :</label>
+            <input type="text" form-controlName="pucdocurl" id="pucdocurl"  [(ngModel)]="addNewVehicleTest.pucdocurl"   name="pucdocurl" required>
+            <div *ngIf="pucdocurl && pucdocurl.invalid && pucdocurl.touched" style="color: red;">pucdocurl is required</div>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button> -->
+    <!-- </table> -->
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<div [hidden]="!submitted">
+    
+    <h4 class="row justify-content-center mt-5"style="text-align: center; font-size: 24px; font-weight: bold; width: 1200px;">Submitted Succesfully</h4>
+    
+</div>
