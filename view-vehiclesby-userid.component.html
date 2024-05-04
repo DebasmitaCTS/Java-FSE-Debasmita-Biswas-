@@ -1,0 +1,86 @@
+
+<div [hidden]="submitted" style="width: 500px;">
+    <!-- <form (ngSubmit)="onSubmit()"> -->
+      <div class="container">
+        <div class="row justify-content-center mt-5">
+
+        <div class="col-lg-9 mx-auto"> 
+        <div class="card">
+        <div class="card-header">
+                  <h5>VIEW VEHICLE DETAILS</h5>
+        </div>
+        <div class="card-body">
+      <form [formGroup]="formData" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)">
+       
+        <div class="form-group">
+            <b><label for="belongstouserid">Belongs To User Id: </label></b>
+            <div class="mb-2"></div>
+            <input type="number" class="form-control" formControlName="belongsToUserIdNew" id="belongstouserid"  [(ngModel)]="vehiclebyuser.belongsToUserId" name="belongsToUserId" required>
+            <span *ngIf="formData.controls.belongsToUserIdNew.errors?.required && formData.controls.belongsToUserIdNew.touched">
+              <p style="color: red;"> Enter User ID</p>
+            </span>
+            <!-- <div *ngIf="belongstouserid && belongstouserid.invalid && belongstouserid.touched" style="color: red;">userId  is required</div> -->
+          </div>
+          <div class="mb-3"></div>
+          <button type="submit" class="btn btn-success" [disabled]="formData.invalid">Search</button>
+        
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    
+</div>
+
+<div [hidden]="!submitted && !noRecordFound" style="width: 1250px;">
+  <div *ngIf="responseData">
+    
+    <div class="row justify-content-center mt-8">
+    <div class="col-md-12">
+      <!-- <div class="card-header">
+        <h5>VEHICLE DETAILS</h5>
+      </div> -->
+        <table class="table table-striped table-bordered" border="1px">
+          <thead class="thead-dark">
+          <tr style="text-align:center;">
+            
+            <th scope="col">Registration Number</th>
+            <th scope="col">Belongs To User Id</th>
+            <th scope="col">Vehicle Type Id</th>
+            <th scope="col">  Inspection Status</th>
+            <th scope="col">Inspected by User Id</th>
+            <th scope="col">Inspected On</th>
+            <th scope="col">Action</th>
+      
+          </tr>
+        </thead>
+          <tbody class="table-group-divider">
+          <tr scope="row" style="text-align:center;">
+            <td>{{ vehiclebyuser.registrationNo}}</td>
+            <td>{{ vehiclebyuser.belongsToUserId}}</td>
+            <td>{{ vehiclebyuser.vehicleTypeId}}</td>
+            <td>{{ vehiclebyuser.inspectionStatus}}</td>
+            <td>{{ vehiclebyuser.inspectedByUserId}}</td>
+            <td>{{ vehiclebyuser.inspectedOn}}</td>
+             
+      <!-- <td><a style="margin-left:10px" routerLink="/updateEmployee" >Update</a> -->
+      <!-- <td><a style="margin-left:10px" routerLink="DeleteVehicle" >DeleteVehicle</a></td> -->
+      <td><a  routerLink="DeleteVehicle" >Delete Vehicle</a><td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+      
+        <div *ngIf = "responseError" class="text-center">
+          
+          <p class="row justify-content-center mt-5"style="text-align: center; font-size: 24px; font-weight: bold; color: red; width: 1200px;" > User Id is not found!</p>
+          <div class="center- text">
+            <!-- <button (click)="reload()">Get Bill</button> -->
+            </div>
+        </div>
+</div>
