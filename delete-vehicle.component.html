@@ -1,0 +1,45 @@
+<div [hidden]="submitted" style="width: 500px;">
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+        <div class="col-lg-9">
+        <div class="card">
+        <div class="card-header">
+
+                <h4>DELETE VEHICLE</h4>
+        </div>
+        <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <b><label for="registrationNo">Registration Number:</label></b>
+            <div class="mb-2"></div>
+
+            <input type="text" class="form-control" id="registrationNo" required [(ngModel)]="vehiclesdto.registrationNo" name="registrationNo" >
+            <div class="mb-2"></div>
+            <b><label for="belongsToUserId">Belongs To User Id:</label></b>
+            <div class="mb-2"></div>
+            <input type="number" class="form-control" id="belongsToUserId" required [(ngModel)]="vehiclesdto.belongsToUserId" name="belongsToUserId" readonly>
+        </div>
+
+        <!-- <div *ngIf="errorMessage">
+        <p>Error:{{errorMessage}}</p></div>
+        <div *ngIf="!errorMessage">
+        <h2>
+            successfully submitted
+        </h2></div> -->
+        <div [hidden]="submitted">
+            <p style="color:red;">
+                {{errorMessage}}
+            </p></div>
+        <button type="submit" class="btn btn-success" >Delete</button>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+<div [hidden]="!submitted">
+    
+    <h4 class="row justify-content-center mt-5" style="text-align: center; font-size: 24px; font-weight: bold; width: 1200px;">Deleted Succesfully</h4>
+</div>
+
