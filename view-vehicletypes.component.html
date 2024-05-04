@@ -1,0 +1,20 @@
+<h3>vehicletypes details<h3>
+<table class="table">
+    <thead>
+    <tr>
+      <th scope="col"> Id</th>
+      <th scope="col"> Type</th>
+      <th scope="col">MaxPassengersAllowed</th>
+      <th scope="col">FarePerKM</th>
+    </tr>
+  </thead>
+    <tbody>
+    <tr *ngFor="let Vehicletypes of vehicletypes">
+      <td>{{Vehicletypes.id}}</td>
+      <td>{{Vehicletypes.type}}</td>
+      <td>{{Vehicletypes.maxPassengersAllowed}}</td>
+      <td>{{Vehicletypes.farePerKM}}</td>
+      
+    </tr>
+    </tbody>
+  </table>
