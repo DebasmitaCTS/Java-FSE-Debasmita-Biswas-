@@ -1,0 +1,31 @@
+<!-- <p>navigation works!</p> -->
+<!-- <a routerLink="AddNewVehicle">Add New Vehicle</a>
+<br><br>
+ <a routerLink="vehicletypes">View Vehicle Types </a>
+<br><br> -->
+<!-- <a routerLink="viewvehiclesbyuserid">MyVehicle</a>
+<br><br>
+<a routerLink="ApproveRejectVehicle">ApproveRejectVehicle</a>  -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="home" >Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a routerLink="/AddNewVehicle" class="text-decoration-none mx-2 text-white">Add New Vehicle</a>
+          <a routerLink="/viewvehiclesbyuserid" class="text-decoration-none mx-2 text-white">My Vehicle</a>
+          <a routerLink="/ApproveRejectVehicle" class="text-decoration-none mx-2 text-white">Approve Reject Vehicle</a>
+          <!-- <a routerLink="/logout" class="text-decoration-none mx-2 text-white">Logout</a> -->
+        </div>
+      </div>
+      <div>
+        <ul class = "navbar-nav">
+          <li class = "navbar-item">
+            <!-- <a [hidden]="!autheticateUsersService.isUserLoggedIn()" class="nav-link active " (click)="logout()" routerLink="logout" routerLinkActive="active">Logout</a> -->
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

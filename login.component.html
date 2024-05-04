@@ -1,0 +1,17 @@
+
+<div style = "width: 500px; padding-top: 130px;" class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="checkLogin()">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" name="username" formControlName="userName" required>
+        </div>
+        <div class="mb-3">
+          <label for="username" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" formControlName="password" required>
+          </div>
+          <button type="submit" class="btn btn-dark" [disabled]="loginForm.invalid">Sign in</button>
+    </form>
+    <p class="mb-3" style="color: red;" [hidden]="invalidCredentials">Invalid credentials</p>
+  </div>
+
+  
